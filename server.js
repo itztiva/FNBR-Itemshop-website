@@ -34,22 +34,18 @@ app.get('/api/shop', (req, res) => {
 
         fs.writeFile(filePath, JSON.stringify(parsedData), err => {
           if (err) {
-            console.error('Error writing to file:', err);
             res.status(500).send('Error writing to file');
           } else {
-            console.log('Data saved to', filePath);
             res.json(parsedData);
           }
         });
       } catch (error) {
-        console.error('Error parsing data:', error);
         res.status(500).send('Error parsing data');
       }
     });
   });
 
   request.on('error', error => {
-    console.error('Error fetching data:', error);
     res.status(500).send('Error fetching data');
   });
 
